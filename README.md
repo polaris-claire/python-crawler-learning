@@ -143,8 +143,52 @@ git checkout -b 分支名 -> 新建并切换分支
 git merge 分支名 -> 合并分支到当前
 git diff -> 查看改动
 git diff master..HEAD 意思是：对比 master 分支和当前分支 HEAD 的差异
-# 3. 把 master 回退到 step1（保留文件在工作区，不删除）
+
+把 master 回退到 step1（保留文件在工作区，不删除）
 git reset --soft 342672f
 --soft = 软回退：只撤销 commit，文件还在暂存区
 --mixed = 混合回退：撤销 commit 和 add，文件还在工作区（默认）
 --hard = 硬回退：彻底删掉，文件也没了（慎用！）
+
+## 爬虫最核心的技能
+
+——**怎么找到你要的内容在 HTML 的什么位置。
+
+答案是：用浏览器的开发者工具（F12。
+
+怎么找到选择器？
+第一步：打开目标网页
+用 Chrome 或 Edge 打开目标网站
+第二步：打开开发者工具
+   按 F12 键，或者右键 → 右键页面上，或者 **检查"元素
+按 F12 就会弹出开发者工具的小箭头
+第三步：用"选择元素工具
+   在开发者工具的左上角有个小箭头图标（或者按 Ctrl +Shift + C
+   然后在网页上你想找的内容（比如某条名言），点一下
+第四步：看 HTML 结构
+   点完之后，开发者工具会自动定位到那条名言对应的 HTML 代码。你就能看到：
+
+```bash
+<div class="quote" ...>
+  <span class="text" ...>名言内容
+  <span>
+    <small class="author">作者
+    <a href="/author/...">
+    ...
+```
+
+你就知道了：
+每条名言都在 class="quote" 的 div 里
+名言内容在 class="text" 的 span 里
+作者在 class="author" 的 small 里
+实际操作
+找选择器的方法
+方法：
+开发者工具 → Elements 面板里，找到对应元素上 → 右键 → Copy → Copy selector
+就能拿到 CSS 选择器
+类比
+你可以试试打开 quotes.toscrape.com 来练习一下，找找看：
+名言在哪个标签里？
+下一页按钮的链接在哪？
+标签页的链接怎么找？
+这是爬虫的"侦察"工作，80% 的时间都花在这上面了。写代码本身反而简单。
